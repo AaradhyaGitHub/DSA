@@ -1,0 +1,16 @@
+**For .gitignore, add:**
+```
+# Compiled executables
+*.out
+*.exe
+a.out
+
+# Object files
+*.o
+
+# macOS files
+.DS_Store
+
+# Editor files
+.vscode/
+*.swp
