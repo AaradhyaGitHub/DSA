@@ -12,9 +12,16 @@ void tail_delete(Node **head)
         if (current->next == nullptr)
         {
             cout << "City to delete: " << current->data << endl;
+
+            Node *temp = current;
+
+            current->prev->next = nullptr;
+
+            delete temp;
+            return;
         }
 
-        current = current->next;
+        current = current->next; // Bug: if we just deleted, this accesses freed memory
     }
 }
 
