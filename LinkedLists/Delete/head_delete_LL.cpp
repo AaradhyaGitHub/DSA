@@ -2,20 +2,59 @@
 #include "Node.h"
 using namespace std;
 
-void head_delete(Node **head){
-    cout << "Test";
+void head_delete(Node **head)
+{
+    cout << "current head: "<< (*head)->data << endl;
+    cout << endl;
+    //(*head)->next;
+    Node *temporary_holder = *head;
+    *head = temporary_holder->next;
+    delete temporary_holder;        
 }
 
 int main()
 {
-    Node *head = nullptr;
+    Node *el_cerrito = new Node("El Cerrito");
+    Node *albany = new Node("Albany");
+    Node *berkeley = new Node("Berkeley");
+    Node *emeryville = new Node("Emeryville");
+    Node *oakland = new Node("Oakland");
+    Node *san_francisco = new Node("San Francisco");
 
-    head_insert(&head, "First");
-    head_insert(&head, "Second");
-    head_insert(&head, "Third");
+    el_cerrito->prev = nullptr;
+    el_cerrito->next = albany;
 
-    cout << "Initial list: ";
+    albany->prev = el_cerrito;
+    albany->next = berkeley;
+
+    berkeley->prev = albany;
+    berkeley->next = emeryville;
+
+    emeryville->prev = berkeley;
+    emeryville->next = oakland;
+
+    oakland->prev = emeryville;
+    oakland->next = san_francisco;
+
+    san_francisco->prev = oakland;
+    san_francisco->next = nullptr;
+
+    Node *head = el_cerrito;
+    cout << "head in main: " << head << endl;
+
+    cout << "Initial list:" << endl;
     Node *current = head;
+    while (current != nullptr)
+    {
+        cout << current->data << " -> ";
+        current = current->next;
+    }
+    cout << "END" << endl << endl;
+
+    head_delete(&head);
+    
+    cout << "After deleting head:" << endl;
+    current = head;
     while (current != nullptr)
     {
         cout << current->data << " -> ";
@@ -23,45 +62,14 @@ int main()
     }
     cout << "END" << endl;
 
-    head_delete(&head);
-    cout << "After deleting head: ";
+    // Clean up memory
     current = head;
     while (current != nullptr)
     {
-        cout << current->data << " -> ";
+        Node *temp = current;
         current = current->next;
+        delete temp;
     }
-    cout << "END (expected: Second -> First -> END)" << endl;
-
-    head_delete(&head);
-    cout << "After deleting head again: ";
-    current = head;
-    while (current != nullptr)
-    {
-        cout << current->data << " -> ";
-        current = current->next;
-    }
-    cout << "END (expected: First -> END)" << endl;
-
-    head_delete(&head);
-    cout << "After deleting head again: ";
-    current = head;
-    while (current != nullptr)
-    {
-        cout << current->data << " -> ";
-        current = current->next;
-    }
-    cout << "END (expected: END)" << endl;
-
-    head_delete(&head);
-    cout << "After deleting from empty list: ";
-    current = head;
-    while (current != nullptr)
-    {
-        cout << current->data << " -> ";
-        current = current->next;
-    }
-    cout << "END (expected: END)" << endl;
 
     return 0;
 }
