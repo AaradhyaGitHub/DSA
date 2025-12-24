@@ -42,30 +42,39 @@ void make_substitution(Player **head, string to_replace, string replacement)
 
     while (current != nullptr)
     {
-
         if (current->name == to_replace)
         {
+            Player *temp = current;
             Player *sub = new Player(replacement, current->position);
 
-            // set the player
+            // Set new player's pointers
             sub->next = current->next;
             sub->prev = current->prev;
 
-            // remove old player
+            // Rewire surrounding nodes
             if (current->prev != nullptr)
             {
-                current->prev->next = sub;
+                current->prev->next = sub; // Middle or tail case
             }
             else
             {
-                *head = sub;
+                *head = sub; // Head case - update head pointer
             }
 
+            if (current->next != nullptr)
+            {
+                current->next->prev = sub; // Head or middle case
+            }
+
+            delete temp; // Free old player's memory
             return;
         }
 
         current = current->next;
     }
+
+    // Optional: Handle player not found
+    cout << "Player " << to_replace << " not found!" << endl;
 }
 
 int main()
@@ -136,13 +145,56 @@ int main()
     Player *current = head;
     while (current != nullptr)
     {
-        cout << current->name << " (" << current->position << ") ⬇️ " << endl;
+        cout << current->name << " (" << current->position << ") -> ";
+        current = current->next;
+    }
+    cout << "END" << endl
+         << endl;
+
+    // Test 1: Replace middle player
+    cout << "Test 1: Substituting Cubarsi for Garcia" << endl;
+    make_substitution(&head, "Cubarsi", "Garcia");
+    current = head;
+    while (current != nullptr)
+    {
+        cout << current->name << " (" << current->position << ") -> ";
+        current = current->next;
+    }
+    cout << "END" << endl
+         << endl;
+
+    // Test 2: Replace head (captain)
+    cout << "Test 2: Substituting Lewandowski for Ferran" << endl;
+    make_substitution(&head, "Lewandowski", "Ferran");
+    current = head;
+    while (current != nullptr)
+    {
+        cout << current->name << " (" << current->position << ") -> ";
+        current = current->next;
+    }
+    cout << "END" << endl
+         << endl;
+
+    // Test 3: Replace tail (goalkeeper)
+    cout << "Test 3: Substituting Joan for Ter Stegen" << endl;
+    make_substitution(&head, "Joan", "Ter Stegen");
+    current = head;
+    while (current != nullptr)
+    {
+        cout << current->name << " (" << current->position << ") -> ";
+        current = current->next;
+    }
+    cout << "END" << endl
+         << endl;
+
+    // Test 4: Player not found
+    cout << "Test 4: Trying to substitute Messi (not in squad)" << endl;
+    make_substitution(&head, "Messi", "Gavi");
+    current = head;
+    while (current != nullptr)
+    {
+        cout << current->name << " (" << current->position << ") -> ";
         current = current->next;
     }
     cout << "END" << endl;
-
-    // substitute cubarsi
-    make_substitution(&head, "Cubarsi", "Garcia");
-
-    return 0;
 }
