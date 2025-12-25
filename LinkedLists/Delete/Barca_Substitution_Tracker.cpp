@@ -196,5 +196,31 @@ int main()
         cout << current->name << " (" << current->position << ") -> ";
         current = current->next;
     }
-    cout << "END" << endl;
+    cout << "END" << endl
+         << endl;
+
+    // ==================== MEMORY CLEANUP ====================
+    cout << "Cleaning up memory..." << endl;
+
+    // Delete all players in the linked list (starting XI + any substitutes)
+    current = head;
+    while (current != nullptr)
+    {
+        Player *temp = current;
+        current = current->next;
+        delete temp;
+    }
+
+    // Delete unused bench players (not substituted into the game)
+    // Note: ferran, garcia, and ter_stegen were used in substitutions, so already deleted
+    delete bernal;
+    delete rashford;
+
+    // Delete injured players (never used)
+    delete gavi;
+    delete araujo;
+
+    cout << "Memory cleanup complete!" << endl;
+
+    return 0;
 }
