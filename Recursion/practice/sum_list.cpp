@@ -1,78 +1,50 @@
 #include <iostream>
+#include <algorithm>
 #include <vector>
 using namespace std;
 
-// Recursive function to reverse a vector
-vector<int> reverse_list(const vector<int> &arr, int index)
+// Recursive function to sum a vector
+int sum_list(const vector<int> &arr, int index)
 {
-    if (index >= arr.size())
-    {
-        return vector<int>();
+    if (index >= arr.size()){
+        return 0;
     }
 
-    vector<int> reversed = reverse_list(arr, index + 1);
-    reversed.push_back(arr[index]);
-    return reversed;
-
-    // if array size is 1 or greater, return what we received?
+    return sum_list(arr, index+1)+arr[index];
 }
 
 int main()
 {
-    // Test Case 1: Basic example from problem
+    // Test Case 1: Basic example
     vector<int> test1;
     test1.push_back(1);
     test1.push_back(2);
     test1.push_back(3);
     test1.push_back(4);
-    vector<int> result1 = reverse_list(test1, 0);
-    cout << "Test 1: reverse_list([1, 2, 3, 4]) = [";
-    for (int i = 0; i < result1.size(); i++)
-    {
-        cout << result1[i];
-        if (i < result1.size() - 1)
-            cout << ", ";
-    }
-    cout << "] (expected: [4, 3, 2, 1])" << endl;
+    int result1 = sum_list(test1, 0);
+    cout << "Test 1: sum_list([1, 2, 3, 4]) = "
+         << result1 << " (expected: 10)" << endl;
 
     // Test Case 2: Single element
     vector<int> test2;
     test2.push_back(5);
-    vector<int> result2 = reverse_list(test2, 0);
-    cout << "Test 2: reverse_list([5]) = [";
-    for (int i = 0; i < result2.size(); i++)
-    {
-        cout << result2[i];
-        if (i < result2.size() - 1)
-            cout << ", ";
-    }
-    cout << "] (expected: [5])" << endl;
+    int result2 = sum_list(test2, 0);
+    cout << "Test 2: sum_list([5]) = "
+         << result2 << " (expected: 5)" << endl;
 
     // Test Case 3: Empty vector
     vector<int> test3;
-    vector<int> result3 = reverse_list(test3, 0);
-    cout << "Test 3: reverse_list([]) = [";
-    for (int i = 0; i < result3.size(); i++)
-    {
-        cout << result3[i];
-        if (i < result3.size() - 1)
-            cout << ", ";
-    }
-    cout << "] (expected: [])" << endl;
+    int result3 = sum_list(test3, 0);
+    cout << "Test 3: sum_list([]) = "
+         << result3 << " (expected: 0)" << endl;
 
     // Test Case 4: Two elements
     vector<int> test4;
     test4.push_back(10);
     test4.push_back(20);
-    vector<int> result4 = reverse_list(test4, 0);
-    cout << "Test 4: reverse_list([10, 20]) = [";
-    for (int i = 0; i < result4.size(); i++)
-    {
-        cout << result4[i];
-        if (i < result4.size() - 1)
-            cout << ", ";
-    }
-    cout << "] (expected: [20, 10])" << endl;
+    int result4 = sum_list(test4, 0);
+    cout << "Test 4: sum_list([10, 20]) = "
+         << result4 << " (expected: 30)" << endl;
 
     // Test Case 5: Longer list
     vector<int> test5;
@@ -82,31 +54,19 @@ int main()
     test5.push_back(4);
     test5.push_back(5);
     test5.push_back(6);
-    vector<int> result5 = reverse_list(test5, 0);
-    cout << "Test 5: reverse_list([1, 2, 3, 4, 5, 6]) = [";
-    for (int i = 0; i < result5.size(); i++)
-    {
-        cout << result5[i];
-        if (i < result5.size() - 1)
-            cout << ", ";
-    }
-    cout << "] (expected: [6, 5, 4, 3, 2, 1])" << endl;
+    int result5 = sum_list(test5, 0);
+    cout << "Test 5: sum_list([1, 2, 3, 4, 5, 6]) = "
+         << result5 << " (expected: 21)" << endl;
 
-    // Test Case 6: List with duplicate values
+    // Test Case 6: List with negative numbers
     vector<int> test6;
     test6.push_back(3);
-    test6.push_back(3);
+    test6.push_back(-2);
     test6.push_back(7);
-    test6.push_back(3);
-    vector<int> result6 = reverse_list(test6, 0);
-    cout << "Test 6: reverse_list([3, 3, 7, 3]) = [";
-    for (int i = 0; i < result6.size(); i++)
-    {
-        cout << result6[i];
-        if (i < result6.size() - 1)
-            cout << ", ";
-    }
-    cout << "] (expected: [3, 7, 3, 3])" << endl;
+    test6.push_back(-3);
+    int result6 = sum_list(test6, 0);
+    cout << "Test 6: sum_list([3, -2, 7, -3]) = "
+         << result6 << " (expected: 5)" << endl;
 
     return 0;
 }
