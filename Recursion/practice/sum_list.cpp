@@ -9,11 +9,12 @@ vector<int> reverse_list(const vector<int> &arr, int index)
     {
         return vector<int>();
     }
-    
-    vector<int> reversed = reverse_list(arr, index+1);
+
+    vector<int> reversed = reverse_list(arr, index + 1);
     reversed.push_back(arr[index]);
     return reversed;
 
+    // if array size is 1 or greater, return what we received?
 }
 
 int main()
