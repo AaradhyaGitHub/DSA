@@ -5,15 +5,14 @@ using namespace std;
 // Recursive function to reverse a vector
 vector<int> reverse_list(const vector<int> &arr, int index)
 {
-    if (index >= arr.size())
-    {
-        return vector<int>();
+    //[]
+    //[1]
+    //[1,2,3] -> [3,2,1]
+
+    if (arr.size() <= 1){
+        return arr;
     }
     
-    vector<int> reversed = reverse_list(arr, index+1);
-    reversed.push_back(arr[index]);
-    return reversed;
-
 }
 
 int main()
