@@ -14,38 +14,120 @@ public:
     };
 };
 
-void display(Planet **head)
+class LinkedListStack
 {
-    Planet *current = *head;
+private:
+    Planet *head;
 
-    while (current != nullptr)
+public:
+    LinkedListStack()
     {
-        cout << current->name << endl;
-        current = current->next;
+        head = nullptr;
+    };
+    ~LinkedListStack()
+    { // Destructor (right after constructor)
+        while (head != nullptr)
+        {
+            Planet *temp = head;
+            head = head->next;
+            delete temp;
+        }
     }
-}
+
+    void push(string planet_name)
+    {
+        Planet *newPlanet = new Planet(planet_name);
+        newPlanet->next = head;
+
+        head = newPlanet;
+        cout << planet_name << " added to the STACK! " << endl;
+        cout << "___________________________" << endl;
+    };
+
+    void display()
+    {
+        Planet *current = head;
+        int index = 1;
+        while (current != nullptr)
+        {
+            cout << index << ") " << current->name << endl;
+            index++;
+            current = current->next;
+        }
+    };
+
+    string pop()
+    {
+        if (head == nullptr)
+        {
+            return "";
+        }
+        Planet *temp = head;
+        string name_to_return = temp->name;
+
+        head = temp->next;
+        delete temp;
+        return name_to_return;
+    }
+
+    string peek()
+    {
+        if (head == nullptr)
+            return "";
+        cout << "Head of the Stack: " << head->name << endl;
+        return head->name; // Returns "Earth" ✅
+    };
+
+    bool isEmpty()
+    {
+        return head == nullptr ? true : false;
+    }
+};
 
 int main()
 {
+    LinkedListStack solarSystem;
+    LinkedListStack unexploredGalaxy;
+    solarSystem.push("Uranus *snickers");
+    solarSystem.push("Saturn");
+    solarSystem.push("Jupiter");
+    solarSystem.push("Mars");
+    solarSystem.push("Earth");
+    solarSystem.push("Venus");
+    solarSystem.push("Mercury");
 
-    Planet *mercury = new Planet("Mercury");
-    Planet *venus = new Planet("Venus");
-    Planet *earth = new Planet("Earth");
-    Planet *mars = new Planet("Mars");
-    Planet *jupiter = new Planet("Jupiter");
-    Planet *saturn = new Planet("Saturn");
+    cout << endl;
+    solarSystem.display();
 
-    mercury->next = venus;
-    venus->next = earth;
-    earth->next = mars;
-    mars->next = jupiter;
-    jupiter->next = saturn;
-    saturn->next = nullptr;
+    cout << endl;
+    solarSystem.peek();
 
-    Planet *head = mercury;
-    Planet *current = head;
+    if (solarSystem.isEmpty())
+    {
+        cout << "Solar System Stack is not explored";
+    }
+    else
+    {
+        cout << "Solar System is explored! Here are the planets:" << endl;
+        solarSystem.display();
+    }
 
-    display(&head);
+    cout << endl;
 
-    return 0;
+    if (unexploredGalaxy.isEmpty())
+    {
+        cout << "This Galaxy is unexplored!";
+    }
+    else
+    {
+        cout << "This Galaxy is explored!" << endl;
+        unexploredGalaxy.display();
+    }
+
+    cout << "\n--- Testing pop() ---" << endl;
+    string removed = solarSystem.pop();
+    cout << "Removed: " << removed << endl;
+
+    cout << "\nStack after pop:" << endl;
+    solarSystem.display();
 }
