@@ -1,21 +1,35 @@
 # Data Structures & Algorithms Learning Path
 
-**Last Updated:** December 25, 2024  
+**Last Updated:** December 25, 2025  
 **Status:** Active Development - More topics coming soon!
+
+---
+
+## 📊 LeetCode Pattern Coverage
+
+> **Note:** These are NOT direct LeetCode problems, but they follow similar patterns and difficulty levels found on LeetCode. Solving these builds the foundation for tackling actual LeetCode questions.
+
+```
+┌─────────────────────────────────┐
+│  📗 Easy Patterns:      11      │
+│  📙 Medium Patterns:     3      │
+│  📕 Hard Patterns:       0      │
+├─────────────────────────────────┤
+│  Total Problems:        14      │
+└─────────────────────────────────┘
+```
 
 ---
 
 ## 👋 Welcome!
 
-This repository documents my journey learning Data Structures and Algorithms in C++. Whether you're a professor checking out my work, a friend looking to practice DSA, or future me coming back for a refresher - this guide will help you navigate everything.
-
-**Philosophy:** Concept-first, syntax-second. Understanding *why* before *how*. Building mental models through struggle and breakthrough moments.
+This repository documents my journey learning Data Structures and Algorithms in C++. This guide will help you navigate everything.
 
 ---
 
 ## 🎯 Who Is This For?
 
-- **Professors:** See my understanding of fundamental CS concepts and implementation skills
+- **Professors/Employers:** See my understanding of fundamental CS concepts and implementation skills
 - **Friends:** Learn DSA with clear progression and documented pitfalls  
 - **Future Me:** Remember the key insights that made concepts click
 
@@ -35,9 +49,58 @@ Before starting, you should know:
 
 ---
 
-## 🗺️ The Complete Learning Path
+## 🗺️ Visual Study Path
 
-Follow this order - each section builds on the previous one:
+```
+START HERE
+    ↓
+[Recursion] → 4 problems
+    ↓
+[LinkedLists Basics] → 4 operations
+    ↓
+[Recursion Practice] → 2 problems  ← (Come back!)
+    ↓
+[LinkedLists Delete] → 3 operations
+    ↓
+[Stack] → 2 implementations
+    ↓
+MORE COMING SOON...
+(Queue, BST, and beyond)
+```
+
+---
+
+## 📑 Quick Navigation Table
+
+| # | Topic | Files to Complete | Difficulty | Folder |
+|---|-------|-------------------|------------|--------|
+| **1** | **Recursion Basics** | 4 files | | [`Recursion/`](./Recursion/) |
+| | └─ [palindrome.cpp](./Recursion/palindrome.cpp) | Check if string is palindrome | `LC-Easy` | |
+| | └─ [count_occurences.cpp](./Recursion/count_occurences.cpp) | Count element occurrences | `LC-Easy` | |
+| | └─ [largest_in_the_list.cpp](./Recursion/largest_in_the_list.cpp) | Find max value | `LC-Easy` | |
+| | └─ [reverse_list.cpp](./Recursion/reverse_list.cpp) | Reverse elements | `LC-Easy` | |
+| **2** | **LinkedLists Basics** | 4 files | | [`LinkedLists/`](./LinkedLists/) |
+| | └─ [LL_Implementation.cpp](./LinkedLists/LL_Implementation.cpp) | Build linked list from scratch | | |
+| | └─ [head_insert_LL.cpp](./LinkedLists/head_insert_LL.cpp) | Insert at beginning | `LC-Easy` | |
+| | └─ [search_LL.cpp](./LinkedLists/search_LL.cpp) | Traverse and find | `LC-Easy` | |
+| | └─ [Reverse_LL.cpp](./LinkedLists/Reverse_LL.cpp) | Reverse entire list | `LC-Easy` | |
+| **3** | **Recursion Practice** | 2 files | | [`Recursion/practice/`](./Recursion/practice/) |
+| | └─ [reverse_list.cpp](./Recursion/practice/reverse_list.cpp) | Reverse recursively | `LC-Medium` | |
+| | └─ [sum_list.cpp](./Recursion/practice/sum_list.cpp) | Calculate sum | `LC-Easy` | |
+| **4** | **LinkedLists Delete** | 3 files | | [`LinkedLists/Delete/`](./LinkedLists/Delete/) |
+| | └─ [head_delete_LL.cpp](./LinkedLists/Delete/head_delete_LL.cpp) | Delete from front | `LC-Easy` | |
+| | └─ [middle_delete_LL.cpp](./LinkedLists/Delete/middle_delete_LL.cpp) | Delete from middle | `LC-Medium` | |
+| | └─ [tail_delete_LL.cpp](./LinkedLists/Delete/tail_delete_LL.cpp) | Delete from end | `LC-Medium` | |
+| **5** | **Stacks (LIFO)** | 2 files | | [`Stack/`](./Stack/) |
+| | └─ [array_implementation.cpp](./Stack/array_implementation.cpp) | Vector-based stack | `LC-Easy` | |
+| | └─ [linked_list_implementation.cpp](./Stack/linked_list_implementation.cpp) | LL-based stack | `LC-Easy` | |
+
+**Completed:** 14 implementation files across 5 major topics  
+**Coming Next:** Queue, Binary Search Trees, and more...
+
+---
+
+## 📖 Detailed Breakdown by Phase
 
 ### **Phase 1: Recursion Foundations**
 📁 **Folder:** `Recursion/`
@@ -145,59 +208,11 @@ Build stacks using TWO different underlying implementations to understand trade-
 
 ---
 
-### **Phase 6: Queues (FIFO)**
-📁 **Folder:** `Queue/`
-
-Learn FIFO behavior and advanced queue variants.
-
-**Order:**
-1. `linked_list_implementation.cpp` - Basic queue with LL
-2. `circular_array_implementation.cpp` - Efficient array-based queue
-3. `deque_implementation.cpp` - Double-ended queue (add/remove from both ends)
-
-**Key Concepts:**
-- FIFO (First In, First Out) behavior
-- Circular buffer logic
-- Head AND tail pointers
-- Deque use cases
-
-📖 *Detailed notes available in `Queue/README.md`*
-
----
-
-### **Phase 7: Binary Search Trees**
-📁 **Folder:** `Binary Search Tree/`
-
-Non-linear data structure with hierarchical relationships.
-
-**Order:**
-
-**Part 1: Structure & Basic Operations**
-1. `bst_structure.cpp` - Node definition + BST class skeleton
-2. `insert.cpp` - Add nodes while maintaining BST property
-3. `search.cpp` - Find elements efficiently
-
-**Part 2: Tree Traversals**  
-📁 **Subfolder:** `traversals/`
-1. `inorder.cpp` - Left → Root → Right (gives sorted order!)
-2. `preorder.cpp` - Root → Left → Right
-3. `postorder.cpp` - Left → Right → Root
-
-**Key Concepts:**
-- BST property: left < parent < right
-- Why in-order traversal gives sorted output
-- Recursive tree operations
-- When to use each traversal type
-
-📖 *Detailed notes available in `Binary Search Tree/README.md`*  
-📖 *Traversal notes in `Binary Search Tree/traversals/README.md`*
-
----
-
 ## 🚧 What's Next?
 
 This repository is actively growing as I continue learning DSA. Topics coming soon:
-- More tree operations (delete, balance)
+- **Queue** - FIFO behavior, circular buffers, deques
+- **Binary Search Tree** - Tree structures and traversals
 - Heaps & Priority Queues
 - Hash Tables
 - Graphs
@@ -248,4 +263,4 @@ A: Yes! Many READMEs document JS→C++ translation differences (especially for a
 ---
 
 *Created by Aaradhya Poudyal*  
-*Last updated: December 25, 2024*
+*Last updated: December 25, 2025*
