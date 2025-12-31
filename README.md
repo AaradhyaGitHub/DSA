@@ -1,6 +1,6 @@
 # Data Structures & Algorithms Learning Path
 
-**Last Updated:** December 25, 2025  
+**Last Updated:** December 30, 2025  
 **Status:** Active Development - More topics coming soon!
 
 ---
@@ -11,11 +11,11 @@
 
 ```
 ┌─────────────────────────────────┐
-│  📗 Easy Patterns:      11      │
+│  📗 Easy Patterns:      13      │
 │  📙 Medium Patterns:     3      │
 │  📕 Hard Patterns:       0      │
 ├─────────────────────────────────┤
-│  Total Problems:        14      │
+│  Total Problems:        16      │
 └─────────────────────────────────┘
 ```
 
@@ -64,8 +64,10 @@ START HERE
     ↓
 [Stack] → 2 implementations
     ↓
+[Queue] → 2 implementations
+    ↓
 MORE COMING SOON...
-(Queue, BST, and beyond)
+(BST, Heaps, and beyond)
 ```
 
 ---
@@ -94,9 +96,12 @@ MORE COMING SOON...
 | **5** | **Stacks (LIFO)** | 2 files | | [`Stack/`](./Stack/) |
 | | └─ [array_implementation.cpp](./Stack/array_implementation.cpp) | Vector-based stack | `LC-Easy` | |
 | | └─ [linked_list_implementation.cpp](./Stack/linked_list_implementation.cpp) | LL-based stack | `LC-Easy` | |
+| **6** | **Queue (FIFO)** | 2 files | | [`Queue/`](./Queue/) |
+| | └─ [linked_list_implementation.cpp](./Queue/linked_list_implementation.cpp) | LL-based queue | `LC-Easy` | |
+| | └─ [circular_array_implementation.cpp](./Queue/circular_array_implementation.cpp) | Circular array queue | `LC-Easy` | |
 
-**Completed:** 14 implementation files across 5 major topics  
-**Coming Next:** Queue, Binary Search Trees, and more...
+**Completed:** 16 implementation files across 6 major topics  
+**Coming Next:** Binary Search Trees, Heaps, and more...
 
 ---
 
@@ -208,15 +213,40 @@ Build stacks using TWO different underlying implementations to understand trade-
 
 ---
 
+### **Phase 6: Queue (FIFO)**
+📁 **Folder:** `Queue/`
+
+Build queues using TWO different underlying implementations to understand trade-offs and contrast with Stack.
+
+**Order:**
+1. `linked_list_implementation.cpp` - Queue using linked lists (naturally suited for queues)
+2. `circular_array_implementation.cpp` - Queue using circular array/vector (fixed capacity)
+
+**Key Questions Answered:**
+- How is Queue different from Stack? (FIFO vs LIFO)
+- Why do queues need TWO pointers instead of one?
+- What is a circular array and why use it?
+- When to use LinkedList vs Array-based queue?
+
+**Key Concepts:**
+- FIFO (First In, First Out) behavior
+- Two-pointer management (head and tail)
+- Circular wrap-around with modulo arithmetic
+- The "lost slot" tradeoff in circular arrays
+- Memory management differences (LL vs vector)
+
+📖 *Detailed notes available in `Queue/README.md`*
+
+---
+
 ## 🚧 What's Next?
 
 This repository is actively growing as I continue learning DSA. Topics coming soon:
-- **Queue** - FIFO behavior, circular buffers, deques
 - **Binary Search Tree** - Tree structures and traversals
-- Heaps & Priority Queues
-- Hash Tables
-- Graphs
-- Dynamic Programming
+- **Heaps & Priority Queues** - Special tree structures
+- **Hash Tables** - O(1) lookup structures
+- **Graphs** - Network structures and algorithms
+- **Dynamic Programming** - Optimization techniques
 - ...and more!
 
 ---
@@ -242,7 +272,7 @@ This repository reflects a specific learning approach:
 4. **Multiple implementations** - See trade-offs by building the same structure different ways
 5. **Connect the dots** - Each topic builds on previous knowledge
 
-**Example:** We learn recursion first because it teaches LIFO thinking, which makes stacks intuitive. Then stacks use linked lists, which we already mastered. Each concept reinforces the others.
+**Example:** We learn recursion first because it teaches LIFO thinking, which makes stacks intuitive. Stacks then contrast with queues (LIFO vs FIFO). Both use linked lists and arrays, which we already mastered. Each concept reinforces the others.
 
 ---
 
@@ -263,4 +293,4 @@ A: Yes! Many READMEs document JS→C++ translation differences (especially for a
 ---
 
 *Created by Aaradhya Poudyal*  
-*Last updated: December 25, 2025*
+*Last updated: December 30, 2025*
