@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 struct Node
@@ -42,8 +43,27 @@ private:
 
         return node;
     }
-    Node *inOrderSearchHelper(Node *node, int val){
 
+    void inOrderSearchHelper(Node *node, vector<int> &result)
+    {
+        if (node == nullptr)
+        {
+            cout << "   🚫 Reached nullptr - returning" << endl;
+            return;
+        }
+
+        cout << "   📍 Visiting node: " << node->data << endl;
+
+        cout << "   ⬅️  Going LEFT from " << node->data << endl;
+        inOrderSearchHelper(node->left, result);
+
+        cout << "   ✅ Adding " << node->data << " to result" << endl;
+        result.push_back(node->data);
+
+        cout << "   ➡️  Going RIGHT from " << node->data << endl;
+        inOrderSearchHelper(node->right, result);
+
+        cout << "   ⬆️  Returning from node " << node->data << endl;
     }
 
     void destroyTree(Node *node)
@@ -67,12 +87,32 @@ public:
         root = insertHelper(root, val);
     }
 
-    void inOrderSearch(int val)
+    vector<int> inOrderSearch()
     {
-        root = inOrderSearchHelper(root, val);
+        if (root == nullptr)
+        {
+            cout << "❌ Empty tree, cannot traverse!" << endl;
+            return {};
+        }
+
+        cout << "\n🔍 Starting In-Order Traversal (Left → Root → Right)" << endl;
+        cout << "================================================\n" << endl;
+
+        vector<int> result;
+        inOrderSearchHelper(root, result);
+
+        cout << "\n================================================" << endl;
+        cout << "✨ Traversal complete!" << endl;
+        cout << "📊 Result: ";
+        for (int val : result)
+        {
+            cout << val << " ";
+        }
+        cout << "\n" << endl;
+
+        return result;
     }
 
-public:
     ~BST()
     {
         destroyTree(root);
@@ -81,7 +121,6 @@ public:
 
 int main()
 {
-
     BST tree;
 
     cout << "Building this tree:" << endl;
@@ -89,8 +128,7 @@ int main()
     cout << "      / \\" << endl;
     cout << "     3   7" << endl;
     cout << "    / \\" << endl;
-    cout << "   1   4\n"
-         << endl;
+    cout << "   1   4\n" << endl;
 
     cout << "Building now... \n";
     tree.insert(5);
@@ -99,11 +137,11 @@ int main()
     tree.insert(1);
     tree.insert(4);
 
-    cout << "✨ Tree construction complete!\n"
-         << endl;
+    cout << "✨ Tree construction complete!\n" << endl;
 
-    cout << "Running in order search\n"
-         << endl;
+    cout << "Running in order search\n" << endl;
+
+    tree.inOrderSearch();
 
     return 0;
 }
