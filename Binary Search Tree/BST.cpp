@@ -22,34 +22,33 @@ private:
 
     Node *searchHelper(Node *node, int val)
     {
+        // Base case: reached a dead end
         if (node == nullptr)
         {
-            cout << "   ⚠️  Tree " << val << " is empty..." << endl;
-            return;
+            cout << "   ❌ Value " << val << " not found!" << endl;
+            return nullptr;
         }
 
+        // Found it!
+        if (node->data == val)
+        {
+            cout << "   🎯 Found " << val << "!" << endl;
+            return node;
+        }
+
+        // Go left
         if (val < node->data)
         {
             cout << "   ⬅️  " << val << " < " << node->data << " → Going LEFT" << endl;
-            if (node->data == val)
-            {
-                cout << "   🎁 " << val << " found!";
-                return node;
-            }
-            node->left = searchHelper(node->left, val);
+            return searchHelper(node->left, val);
         }
 
-        else if (val > node->data)
+        // Go right
+        else
         {
             cout << "   ➡️  " << val << " > " << node->data << " → Going RIGHT" << endl;
-            if (node->data == val)
-            {
-                cout << "   🎁 " << val << " found!";
-                return node;
-            }
-            node->right = searchHelper(node->right, val);
+            return searchHelper(node->right, val);
         }
-        return node;
     }
 
     Node *insertHelper(Node *node, int val)
@@ -102,12 +101,26 @@ public:
         cout << "________________________________________" << endl;
     }
 
-    void search(int val)
+public:
+    bool search(int val)
     {
-        cout << "🔎 Searching " << val << "in BST..." << endl;
-        root = searchHelper(root, val);
-        cout << "   ✅ Search complete!" << endl;
-        cout << "________________________________________" << endl;
+        cout << "🔍 Searching for " << val << " in BST..." << endl;
+        Node *result = searchHelper(root, val);
+
+        if (result != nullptr)
+        {
+            cout << "   ✅ Search successful!" << endl;
+            cout << "________________________________________" << endl;
+
+            return true;
+        }
+        else
+        {
+            cout << "   ⚠️  Search failed!" << endl;
+            cout << "________________________________________" << endl;
+
+            return false;
+        }
     }
 
     ~BST()
@@ -146,10 +159,10 @@ int main()
     cout << "   Rule enforced: Left < Parent < Right\n"
          << endl;
 
-    // tree.search(3);
-    // tree.search(1);
-    // tree.search(5);
-    // tree.search(10);
+    tree.search(3);
+    tree.search(1);
+    tree.search(5);
+    tree.search(10);
 
     return 0;
 }
