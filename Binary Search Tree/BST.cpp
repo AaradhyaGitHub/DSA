@@ -20,6 +20,38 @@ class BST
 private:
     Node *root;
 
+    Node *searchHelper(Node *node, int val)
+    {
+        if (node == nullptr)
+        {
+            cout << "   ⚠️  Tree " << val << " is empty..." << endl;
+            return;
+        }
+
+        if (val < node->data)
+        {
+            cout << "   ⬅️  " << val << " < " << node->data << " → Going LEFT" << endl;
+            if (node->data == val)
+            {
+                cout << "   🎁 " << val << " found!";
+                return node;
+            }
+            node->left = searchHelper(node->left, val);
+        }
+
+        else if (val > node->data)
+        {
+            cout << "   ➡️  " << val << " > " << node->data << " → Going RIGHT" << endl;
+            if (node->data == val)
+            {
+                cout << "   🎁 " << val << " found!";
+                return node;
+            }
+            node->right = searchHelper(node->right, val);
+        }
+        return node;
+    }
+
     Node *insertHelper(Node *node, int val)
     {
         if (node == nullptr)
@@ -70,6 +102,14 @@ public:
         cout << "________________________________________" << endl;
     }
 
+    void search(int val)
+    {
+        cout << "🔎 Searching " << val << "in BST..." << endl;
+        root = searchHelper(root, val);
+        cout << "   ✅ Search complete!" << endl;
+        cout << "________________________________________" << endl;
+    }
+
     ~BST()
     {
         destroyTree(root);
@@ -80,7 +120,8 @@ int main()
 {
     cout << "\n╔════════════════════════════════════════╗" << endl;
     cout << "║   Binary Search Tree - Insert Demo    ║" << endl;
-    cout << "╚════════════════════════════════════════╝\n" << endl;
+    cout << "╚════════════════════════════════════════╝\n"
+         << endl;
 
     BST tree;
 
@@ -89,9 +130,11 @@ int main()
     cout << "      / \\" << endl;
     cout << "     3   7" << endl;
     cout << "    / \\" << endl;
-    cout << "   1   4\n" << endl;
+    cout << "   1   4\n"
+         << endl;
 
-    cout << "--- Starting insertions ---\n" << endl;
+    cout << "--- Starting insertions ---\n"
+         << endl;
 
     tree.insert(5);
     tree.insert(3);
@@ -100,7 +143,8 @@ int main()
     tree.insert(4);
 
     cout << "\n✨ Tree construction complete!" << endl;
-    cout << "   Rule enforced: Left < Parent < Right\n" << endl;
+    cout << "   Rule enforced: Left < Parent < Right\n"
+         << endl;
 
     // tree.search(3);
     // tree.search(1);
