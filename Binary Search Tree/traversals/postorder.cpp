@@ -63,7 +63,6 @@ private:
 
         cout << "  ➕ Adding " << node->data << " to result" << endl;
         result.push_back(node->data);
-
     }
 
     void destroyTree(Node *node)
@@ -99,24 +98,20 @@ public:
         cout << "================================================\n"
              << endl;
 
-        vector <int> result;
+        vector<int> result;
         postOrderHelper(root, result);
 
         cout << "\n================================================" << endl;
         cout << "✨ Traversal complete!" << endl;
         cout << "📊 Result: ";
 
-        for (int val: result){
+        for (int val : result)
+        {
             cout << val << " ";
         }
-        cout << "\n" <<endl;
+        cout << "\n"
+             << endl;
         return result;
-
-
-        
-
-        
-        
     };
 
     ~BST()
