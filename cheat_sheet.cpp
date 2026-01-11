@@ -1,3 +1,10 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+// ========== Nodemon for auto compile + file watch + auto execution ==========
+nodemon --exec 'g++ -std=c++11 postorder.cpp -o postorder && ./postorder' --ext cpp
+
 // ========== POINTERS & REFERENCES ==========
 
 int x = 10;

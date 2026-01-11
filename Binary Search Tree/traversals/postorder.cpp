@@ -25,7 +25,7 @@ private:
     {
         if (node == nullptr)
         {
-            return nullptr;
+            return new Node(val);
         }
 
         if (val < node->data)
@@ -63,7 +63,7 @@ private:
 
         cout << "  ➕ Adding " << node->data << " to result" << endl;
         result.push_back(node->data);
-        
+
     }
 
     void destroyTree(Node *node)
@@ -95,9 +95,28 @@ public:
             return {};
         }
 
-        cout << "\n🔍 Starting In-Order Traversal (Left → Root → Right)" << endl;
+        cout << "\n🔍 Starting Post-Order Traversal (Left → Right → Root)" << endl;
         cout << "================================================\n"
              << endl;
+
+        vector <int> result;
+        postOrderHelper(root, result);
+
+        cout << "\n================================================" << endl;
+        cout << "✨ Traversal complete!" << endl;
+        cout << "📊 Result: ";
+
+        for (int val: result){
+            cout << val << " ";
+        }
+        cout << "\n" <<endl;
+        return result;
+
+
+        
+
+        
+        
     };
 
     ~BST()
@@ -128,8 +147,10 @@ int main()
     cout << "✨ Tree construction complete!\n"
          << endl;
 
-    cout << "Running in order search\n"
+    cout << "Running post order search\n"
          << endl;
+
+    tree.postOrderSearch();
 
     return 0;
 }
