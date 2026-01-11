@@ -11,11 +11,11 @@
 
 ```
 ┌─────────────────────────────────┐
-│  📗 Easy Patterns:      13      │
+│  📗 Easy Patterns:      19      │
 │  📙 Medium Patterns:     3      │
 │  📕 Hard Patterns:       0      │
 ├─────────────────────────────────┤
-│  Total Problems:        16      │
+│  Total Problems:        22      │
 └─────────────────────────────────┘
 ```
 
@@ -66,8 +66,10 @@ START HERE
     ↓
 [Queue] → 2 implementations
     ↓
+[Binary Search Tree] → 1 core + 3 traversals
+    ↓
 MORE COMING SOON...
-(BST, Heaps, and beyond)
+(TBD)
 ```
 
 ---
@@ -99,6 +101,12 @@ MORE COMING SOON...
 | **6** | **Queue (FIFO)** | 2 files | | [`Queue/`](./Queue/) |
 | | └─ [linked_list_implementation.cpp](./Queue/linked_list_implementation.cpp) | LL-based queue | `LC-Easy` | |
 | | └─ [circular_array_implementation.cpp](./Queue/circular_array_implementation.cpp) | Circular array queue | `LC-Easy` | |
+| **7** | **Binary Search Tree** | 1 file + 3 traversals | | [`Binary Search Tree/`](./Binary%20Search%20Tree/) |
+| | └─ [BST.cpp](./Binary%20Search%20Tree/BST.cpp) | Complete BST with insert/search | | |
+| | **Traversals** | 3 files | | [`traversals/`](./Binary%20Search%20Tree/traversals/) |
+| | └─ [inorder.cpp](./Binary%20Search%20Tree/traversals/inorder.cpp) | Left → Root → Right | `LC-Easy` | |
+| | └─ [preorder.cpp](./Binary%20Search%20Tree/traversals/preorder.cpp) | Root → Left → Right | `LC-Easy` | |
+| | └─ [postorder.cpp](./Binary%20Search%20Tree/traversals/postorder.cpp) | Left → Right → Root | `LC-Easy` | |
 
 **Completed:** 16 implementation files across 6 major topics  
 **Coming Next:** Binary Search Trees, Heaps, and more...
@@ -239,6 +247,44 @@ Build queues using TWO different underlying implementations to understand trade-
 
 ---
 
+### **Phase 7: Binary Search Trees (BST)**
+📁 **Folder:** `Binary Search Tree/`
+
+Learn tree structures and how BST enforces ordering with one simple rule: left < parent < right.
+
+**File:**
+1. `BST.cpp` - Complete BST implementation with insert, search, and destructor
+
+**Order:**
+1. Set up Node struct and BST class structure
+2. Implement `insert()` with recursive helper pattern
+3. Implement `search()` using same recursive pattern
+4. Move to `traversals/` folder for DFS traversal practice
+
+**Key Concepts:**
+- Tree structure (hierarchical, branching - not linear)
+- Two pointers per node (`left` and `right`)
+- Helper function pattern (why it's needed for recursion)
+- BST property enforcement (left < parent < right)
+- The `root =` assignment pattern
+
+📖 *Detailed notes available in `Binary Search Tree/README.md`*
+
+**Traversals Subfolder:** `Binary Search Tree/traversals/`
+
+After mastering insert and search, implement the three DFS traversal orders:
+
+**Files:**
+1. `inorder.cpp` - Left → Root → Right (produces sorted output!)
+2. `preorder.cpp` - Root → Left → Right
+3. `postorder.cpp` - Left → Right → Root
+
+**Key Insight:** All three use identical traversal pattern - only the TIMING of print differs.
+
+📖 *Traversal notes in `Binary Search Tree/traversals/README.md`*
+
+---
+
 ## 🚧 What's Next?
 
 This repository is actively growing as I continue learning DSA. Topics coming soon:
@@ -293,4 +339,4 @@ A: Yes! Many READMEs document JS→C++ translation differences (especially for a
 ---
 
 *Created by Aaradhya Poudyal*  
-*Last updated: December 30, 2025*
+*Last updated: January 10, 2026*
