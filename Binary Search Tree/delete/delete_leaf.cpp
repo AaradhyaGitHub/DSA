@@ -91,6 +91,7 @@ private:
 
         inOrderSearchHelper(node->right, result);
     }
+
     void destroyTree(Node *node)
     {
         if (node != nullptr)
@@ -149,6 +150,8 @@ public:
 
         return result;
     }
+    
+    
     ~BST()
     {
         destroyTree(root);
