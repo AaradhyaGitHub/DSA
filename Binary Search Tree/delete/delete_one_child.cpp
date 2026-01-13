@@ -32,10 +32,12 @@ private:
         {
             node->left = insertHelper(node->left, val);
         }
+
         else if (val > node->data)
         {
             node->right = insertHelper(node->right, val);
         }
+        
         else
         {
             cout << "❌ " << val << " already exists! Skipping..." << endl;

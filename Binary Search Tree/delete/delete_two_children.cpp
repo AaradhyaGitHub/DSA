@@ -46,26 +46,83 @@ private:
         return node;
     }
 
-    Node *deleteChildren(Node *node, int val)
+    Node *findMin(Node *node)
     {
-        if (node == nullptr){
-            cout << "C"
+        while (node->left != nullptr)
+        {
+            node = node->left;
+        }
+        cout << "successor is " << node->data << endl;
+        return node;
+    }
+
+    Node *deleteHelper(Node *node, int val)
+    {
+        if (node == nullptr)
+        {
+            cout << "Value not found" << endl;
+            return nullptr;
         }
 
+        if (val < node->data)
+        {
+            node->left = deleteHelper(node->left, val);
+        }
+
+        else if (val > node->data)
+        {
+            node->right = deleteHelper(node->right, val);
+        }
+
+        else
+        {
+            // Found the node to delete
+            cout << "Found it!\n"
+                 << val << " will be deleted!\n" << endl;
+
+            // Case 1: Node with no children (leaf node)
+            if (node->left == nullptr && node->right == nullptr)
+            {
+                delete node;
+                return nullptr;
+            }
+
+            // Case 2a: Node with only right child
+            else if (node->left == nullptr)
+            {
+                Node *temp = node->right;
+                delete node;
+                return temp;
+            }
+
+            // Case 2b: Node with only left child
+            else if (node->right == nullptr)
+            {
+                Node *temp = node->left;
+                delete node;
+                return temp;
+            }
+
+            // Case 3: Node with two children
+            else
+            {
+                Node *successor = findMin(node->right);
+                node->data = successor->data;
+                node->right = deleteHelper(node->right, successor->data);
+            }
+        }
+        return node;
     }
 
     void inOrderHelper(Node *node, vector<int> &result)
     {
         if (node == nullptr)
         {
-            cout << " ❌ Reached the end - returning" << endl;
             return;
         }
 
-        cout << "   📍 Visiting node: " << node->data << endl;
         inOrderHelper(node->left, result);
 
-        cout << "   ✅ Adding " << node->data << " to result" << endl;
         result.push_back(node->data);
 
         inOrderHelper(node->right, result);
@@ -100,13 +157,10 @@ public:
             return {};
         }
 
-        cout << "\n🔍 In-Order Traversal" << endl;
-        cout << "========================" << endl;
 
         vector<int> result;
         inOrderHelper(root, result);
 
-        cout << "📊 Result: ";
         for (int val : result)
         {
             cout << val << " ";
@@ -115,6 +169,16 @@ public:
              << endl;
 
         return result;
+    }
+
+    void deleteNode(int val)
+    {
+        if (root == nullptr)
+        {
+            cout << "❌ Tree is empty!" << endl;
+            return;
+        }
+        root = deleteHelper(root, val);
     }
 
     ~BST()
@@ -148,6 +212,26 @@ int main()
     cout << "✨ Tree built!\n"
          << endl;
 
+    cout << "Tree before deleting:\n";
+    tree.inOrder();
+
+    tree.deleteNode(10);
+
+    cout << "Tree after deleting:\n";
+    tree.inOrder();
+
+    cout << "\nLet's test more cases:\n" << endl;
+    
+    cout << "Deleting leaf node (1):\n";
+    tree.deleteNode(1);
+    tree.inOrder();
+
+    cout << "Deleting node with one child (3):\n";
+    tree.deleteNode(3);
+    tree.inOrder();
+
+    cout << "Deleting node with two children (15):\n";
+    tree.deleteNode(15);
     tree.inOrder();
 
     return 0;
